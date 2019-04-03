@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tele2</title>
+</head>
+<body>
+<!--<div class="container">-->
+    <!--<div class="row">-->
+        <!--<div class="col">-->
+            <!--<h1>Tele2</h1>-->
+            <!--<form>-->
+                <!--<div class="form-row">-->
+                    <!--<div class="col">-->
+                        <!--<label for="search">Поиск тарифа</label>-->
+                        <!--<input name="search" class="form-control" type="search" value="{{search}}"-->
+                               <!--placeholder="Искать тариф" required>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<button type="button" class="btn btn-info">Искать</button>-->
+                <!--<div>-->
+                    <!--<h2><i>ТАРИФЫ</i></h2>-->
+                <!--</div>-->
+            <!--</form>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<table rules="rows" align="center" cellspacing="10" cellpadding="10" width="70%">
+    <caption align="right">Тарифы</caption>
+    <!--<col align="center">-->
+
+    <!--<col span="3" align="center">-->
+
+    {% for item in actual %}
+    <tr>
+        <td>{{item.name}}
+            <i style="color:red"><sup>{{item. hit}}</sup></i>
+            <p><font size="+1">{{item.price}}
+                {% if item.price != 'без абонентской платы' %}
+                ₽</font><sub>/{{item.price_period}}</sub>
+                {% endif %}</p>
+
+        <td>{{item.gb}}
+            {% if item.gb != ' ' and item.gb != 'БЕЗЛИМИТНЫЙ ИНТЕРНЕТ' %}
+            ГБ
+            {% endif %}
+
+            {% if item.gb_unlim != ' ' %}
+            <p><font size="-1"><i>+безлимитные</i></font></p>
+            {% endif %}
+
+
+            <p><font size="-1">{{ item.gb_unlim }}</font></p></td>
+
+        <td>{{item.minutes}}
+            {% if item.minutes != ' ' %}
+            мин.
+            {% endif %}
+            <p><i>{{item.minutes_unlim_tele2}}</i></p></td>
+        <td>{{item.sms}}
+            {% if item.sms != ' ' %}
+            SMS
+            {% endif %}
+        </td>
+
+
+
+
+
+    </tr>
+    {% endfor %}
+</table>
+<p><a href="{{ url_for('archive') }}">Архивные тарифы</a></p>
+
+</body>
+</html>

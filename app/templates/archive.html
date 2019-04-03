@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Архивные тарифы</title>
+
+</head>
+<body>
+<div>
+    <h2><i>Архивные тарифы</i></h2>
+</div>
+<table rules="rows" align="center" cellspacing="10" cellpadding="10" width="60%">
+    <caption align="left">Архивные тарифы</caption>
+    <!--<col align="center">-->
+
+    <!--<col span="3" align="center">-->
+
+
+    {% for item in archived %}
+    <tr>
+        <td>{{item.name}}
+            <i style="color:red"><sup>{{item. hit}}</sup></i>
+            <p>{{item.price}}
+                {% if item.price != 'без абонентской платы' %}
+                ₽<sub>/{{item.price_period}}</sub>
+                {% endif %}
+
+        <td>{{item.gb}}
+            {% if item.gb != ' ' and item.gb != 'БЕЗЛИМИТНЫЙ ИНТЕРНЕТ' %}
+            ГБ
+            {% endif %}
+
+            {% if item.gb_unlim != ' ' %}
+            <p><i>+безлимитные</i></p>
+            {% endif %}
+
+
+            <p>{{ item.gb_unlim }}</p></td>
+
+        <td>{{item.minutes}}
+            {% if item.minutes != ' ' %}
+            мин.
+            {% endif %}
+            <p><i>{{item.minutes_unlim_tele2}}</i></p></td>
+        <td>{{item.sms}}
+            {% if item.sms != ' ' %}
+            SMS
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+</body>
+</html>
