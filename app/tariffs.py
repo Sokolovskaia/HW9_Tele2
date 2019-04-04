@@ -36,13 +36,3 @@ class TariffManager:
 
     def archived(self):
         return list(filter(lambda tariff: tariff.archived, self.items))
-
-
-# def search_tariff(manager, name):
-#     name_lowercased = name.strip().lower()
-#     result = []
-#     for item in manager:
-#         if name_lowercased in item.name.lower():
-#             result.append(item)
-#             continue
-#     return result

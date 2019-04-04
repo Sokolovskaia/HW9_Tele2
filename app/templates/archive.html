@@ -5,28 +5,23 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Архивные тарифы</title>
+    <title>Архивные тарифы Tele2 - список и информация, данные тарифы не доступны к подключению в Республике Татарстан</title>
 
 </head>
 <body>
 <div>
-    <h2><i>Архивные тарифы</i></h2>
+    <h1 align="center"><b><i>Архивные тарифы</i></b></h1>
 </div>
-<table rules="rows" align="center" cellspacing="10" cellpadding="10" width="60%">
-    <caption align="left">Архивные тарифы</caption>
-    <!--<col align="center">-->
-
-    <!--<col span="3" align="center">-->
-
+<table rules="rows" align="center" cellspacing="10" cellpadding="10" width="40%">
 
     {% for item in archived %}
     <tr>
         <td>{{item.name}}
             <i style="color:red"><sup>{{item. hit}}</sup></i>
-            <p>{{item.price}}
+            <p><font size="+1">{{item.price}}
                 {% if item.price != 'без абонентской платы' %}
-                ₽<sub>/{{item.price_period}}</sub>
-                {% endif %}
+                ₽</font><sub>/{{item.price_period}}</sub>
+                {% endif %}</p>
 
         <td>{{item.gb}}
             {% if item.gb != ' ' and item.gb != 'БЕЗЛИМИТНЫЙ ИНТЕРНЕТ' %}
@@ -34,11 +29,11 @@
             {% endif %}
 
             {% if item.gb_unlim != ' ' %}
-            <p><i>+безлимитные</i></p>
+            <p><font size="-1"><i>+безлимитные</i></font></p>
             {% endif %}
 
 
-            <p>{{ item.gb_unlim }}</p></td>
+            <p><font size="-1">{{ item.gb_unlim }}</font></p></td>
 
         <td>{{item.minutes}}
             {% if item.minutes != ' ' %}
@@ -50,10 +45,11 @@
             SMS
             {% endif %}
         </td>
+
     </tr>
     {% endfor %}
 </table>
-
+<p align="center"><font size="+2"><a href="{{ url_for('index') }}"><i>Текущие тарифы</i></a></font></p>
 
 </body>
 </html>

@@ -5,34 +5,12 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tele2</title>
+    <title>Тарифы сотовой связи Tele2, самые выгодные тарифы Республики Татарстан для мобильного телефона</title>
 </head>
 <body>
-<!--<div class="container">-->
-    <!--<div class="row">-->
-        <!--<div class="col">-->
-            <!--<h1>Tele2</h1>-->
-            <!--<form>-->
-                <!--<div class="form-row">-->
-                    <!--<div class="col">-->
-                        <!--<label for="search">Поиск тарифа</label>-->
-                        <!--<input name="search" class="form-control" type="search" value="{{search}}"-->
-                               <!--placeholder="Искать тариф" required>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<button type="button" class="btn btn-info">Искать</button>-->
-                <!--<div>-->
-                    <!--<h2><i>ТАРИФЫ</i></h2>-->
-                <!--</div>-->
-            <!--</form>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
+<h1 align="left"><b><i>Тарифы и опции</i></b></h1>
 <table rules="rows" align="center" cellspacing="10" cellpadding="10" width="70%">
-    <caption align="right">Тарифы</caption>
-    <!--<col align="center">-->
-
-    <!--<col span="3" align="center">-->
+    <caption align="center"><h1><b><i>Тарифы </i></b></h1></caption>
 
     {% for item in actual %}
     <tr>
@@ -66,14 +44,10 @@
             {% endif %}
         </td>
 
-
-
-
-
     </tr>
     {% endfor %}
 </table>
-<p><a href="{{ url_for('archive') }}">Архивные тарифы</a></p>
+<p align="center"><font size="+2"><a href="{{ url_for('archive') }}"><i>Архивные тарифы</i></a></font></p>
 
 </body>
 </html>
