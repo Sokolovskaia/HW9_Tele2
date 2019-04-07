@@ -15,38 +15,44 @@
     {% for item in actual %}
     <tr>
         <td>{{item.name}}
-            <i style="color:red"><sup>{{item. hit}}</sup></i>
 
-            <p>
-                {% if item.price == 0 %}
-                <font size="-1">без абонентской платы</font>
-                {% elif item.price != 0 %}
-                <font size="+3">{{ item.price }} ₽</font><sub>/{{item.price_period}}</sub>
-                {% endif %}</p>
+            {% if item.hit == True %}
+            <i style="color:red"><sup>Хит продаж</sup></i>
+            {% endif %}
+
+        <p>
+            {% if item.price == 0 %}
+            <font size="-1">без абонентской платы</font>
+            {% elif item.price != 0 %}
+            <font size="+3">{{ item.price }} ₽</font><sub>/{{item.price_period}}</sub>
+            {% endif %}</p>
 
         <td>
-        {% if item.gb == -1 %}
-        БЕЗЛИМИТНЫЙ ИНТЕРНЕТ
-        {% elif item.gb != 0 %}
-        {{ item.gb }} ГБ
-        {% endif %}</p>
+            {% if item.gb == -1 %}
+            БЕЗЛИМИТНЫЙ ИНТЕРНЕТ
+            {% elif item.gb != 0 %}
+            {{ item.gb }} ГБ
+            {% endif %}</p>
 
-
-        {% if item.gb_unlim != ' ' %}
-        <p><font size="-1"><i>+безлимитные</i></font></p>
-        {% endif %}
-
-
-            <p><font size="-1">{{ item.gb_unlim }}</font></p></td>
-
-        <td>{{item.minutes}}
-            {% if item.minutes != ' ' %}
-            мин.
+            {% if item.gb_unlim != None %}
+            <p><font size="-1"><i>+безлимитные</i></font></p>
+            <p><font size="-1">{{ " ".join(item.gb_unlim) }}</font></p>
             {% endif %}
-            <p><i>{{item.minutes_unlim_tele2}}</i></p></td>
-        <td>{{item.sms}}
-            {% if item.sms != ' ' %}
-            SMS
+        </td>
+
+        <td>
+            {% if item.minutes != 0 %}
+            {{ item.minutes }} мин.
+            {% endif %}
+
+            {% if item.minutes_unlim_tele2 == True %}
+            <p><i>+ безлимит на Tele2 России</i></p>
+            {% endif %}
+        </td>
+
+        <td>
+            {% if item.sms != 0 %}
+            {{ item.sms }} SMS
             {% endif %}
         </td>
 

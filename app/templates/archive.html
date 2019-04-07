@@ -5,7 +5,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Архивные тарифы Tele2 - список и информация, данные тарифы не доступны к подключению в Республике Татарстан</title>
+    <title>Архивные тарифы Tele2 - список и информация, данные тарифы не доступны к подключению в Республике
+        Татарстан</title>
 
 </head>
 <body>
@@ -17,32 +18,44 @@
     {% for item in archived %}
     <tr>
         <td>{{item.name}}
-            <i style="color:red"><sup>{{item. hit}}</sup></i>
-            <p><font size="+1">{{item.price}}
-                {% if item.price != 'без абонентской платы' %}
-                ₽</font><sub>/{{item.price_period}}</sub>
-                {% endif %}</p>
 
-        <td>{{item.gb}}
-            {% if item.gb != ' ' and item.gb != 'БЕЗЛИМИТНЫЙ ИНТЕРНЕТ' %}
-            ГБ
+            {% if item.hit == True %}
+            <i style="color:red"><sup>Хит продаж</sup></i>
             {% endif %}
 
-            {% if item.gb_unlim != ' ' %}
+            <p>
+            {% if item.price == 0 %}
+            <font size="-1">без абонентской платы</font>
+            {% elif item.price != 0 %}
+            <font size="+3">{{ item.price }} ₽</font><sub>/{{item.price_period}}</sub>
+            {% endif %}</p>
+
+        <td>
+            {% if item.gb == -1 %}
+            БЕЗЛИМИТНЫЙ ИНТЕРНЕТ
+            {% elif item.gb != 0 %}
+            {{ item.gb }} ГБ
+            {% endif %}</p>
+
+            {% if item.gb_unlim != None %}
             <p><font size="-1"><i>+безлимитные</i></font></p>
+            <p><font size="-1">{{ " ".join(item.gb_unlim) }}</font></p>
+            {% endif %}
+        </td>
+
+        <td>
+            {% if item.minutes != 0 %}
+            {{ item.minutes }} мин.
             {% endif %}
 
-
-            <p><font size="-1">{{ item.gb_unlim }}</font></p></td>
-
-        <td>{{item.minutes}}
-            {% if item.minutes != ' ' %}
-            мин.
+            {% if item.minutes_unlim_tele2 == True %}
+            <p><i>+ безлимит на Tele2 России</i></p>
             {% endif %}
-            <p><i>{{item.minutes_unlim_tele2}}</i></p></td>
-        <td>{{item.sms}}
-            {% if item.sms != ' ' %}
-            SMS
+        </td>
+
+        <td>
+            {% if item.sms != 0 %}
+            {{ item.sms }} SMS
             {% endif %}
         </td>
 

@@ -35,81 +35,11 @@ def start():
     @app.route('/')
     def index():
         actual = manager.actual()
-        for item in actual:
-            if item.hit == True:
-                item.hit = 'Хит продаж'
-            else:
-                item.hit = ' '
-
-        for item in actual:
-            if item.minutes_unlim_tele2 == True:
-                item.minutes_unlim_tele2 = '+ безлимит на Tele2 России'
-            else:
-                item.minutes_unlim_tele2 = ' '
-
-        for item in actual:
-            if item.gb_unlim == None:
-                item.gb_unlim = ' '
-            else:
-                item.gb_unlim = " ".join(item.gb_unlim)
-
-            if item.minutes == 0:
-                item.minutes = ' '
-            else:
-                item.minutes = item.minutes
-
-            if item.sms == 0:
-                item.sms = ' '
-            else:
-                item.sms = item.sms
-
         return render_template('index.html', actual=actual)
 
     @app.route('/archive')
     def archive():
         archived = manager.archived()
-        for item in archived:
-            if item.hit == True:
-                item.hit = 'Хит продаж'
-            else:
-                item.hit = ' '
-
-        for item in archived:
-            if item.minutes_unlim_tele2 == True:
-                item.minutes_unlim_tele2 = '+ безлимит на Tele2 России'
-            else:
-                item.minutes_unlim_tele2 = ' '
-
-        for item in archived:
-            if item.gb == -1:
-                item.gb = 'БЕЗЛИМИТНЫЙ ИНТЕРНЕТ'
-            elif item.gb == 0:
-                item.gb = ' '
-            else:
-                item.gb = item.gb
-
-        for item in archived:
-            if item.gb_unlim == None:
-                item.gb_unlim = ' '
-            else:
-                item.gb_unlim = " ".join(item.gb_unlim)
-
-        for item in archived:
-            if item.price == 0:
-                item.price = 'без абонентской платы'
-                item.price_period = ' '
-            else:
-                item.price = item.price
-
-            if item.minutes == 0:
-                item.minutes = ' '
-            else:
-                item.minutes = item.minutes
-
-            if item.sms == 0:
-                item.sms = ' '
-            else:
-                item.sms = item.sms
         return render_template('archive.html', archived=archived)
 
     if os.getenv('APP_ENV') == 'PROD' and os.getenv('PORT'):
