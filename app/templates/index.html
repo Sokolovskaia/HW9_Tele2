@@ -16,9 +16,12 @@
     <tr>
         <td>{{item.name}}
             <i style="color:red"><sup>{{item. hit}}</sup></i>
-            <p><font size="+1">{{item.price}}
-                {% if item.price != 'без абонентской платы' %}
-                ₽</font><sub>/{{item.price_period}}</sub>
+
+            <p>
+                {% if item.price == 0 %}
+                <font size="-1">без абонентской платы</font>
+                {% elif item.price != 0 %}
+                <font size="+3">{{ item.price }} ₽</font><sub>/{{item.price_period}}</sub>
                 {% endif %}</p>
 
         <td>{{item.gb}}

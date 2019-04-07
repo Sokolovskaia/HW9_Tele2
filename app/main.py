@@ -61,12 +61,6 @@ def start():
             else:
                 item.gb_unlim = " ".join(item.gb_unlim)
 
-        for item in actual:
-            if item.price == 0:
-                item.price = 'без абонентской платы'
-                item.price_period = ' '
-            else:
-                item.price = item.price
 
             if item.minutes == 0:
                 item.minutes = ' '
