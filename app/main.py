@@ -48,19 +48,10 @@ def start():
                 item.minutes_unlim_tele2 = ' '
 
         for item in actual:
-            if item.gb == -1:
-                item.gb = 'БЕЗЛИМИТНЫЙ ИНТЕРНЕТ'
-            elif item.gb == 0:
-                item.gb = ' '
-            else:
-                item.gb = item.gb
-
-        for item in actual:
             if item.gb_unlim == None:
                 item.gb_unlim = ' '
             else:
                 item.gb_unlim = " ".join(item.gb_unlim)
-
 
             if item.minutes == 0:
                 item.minutes = ' '

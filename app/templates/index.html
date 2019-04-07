@@ -24,14 +24,17 @@
                 <font size="+3">{{ item.price }} ₽</font><sub>/{{item.price_period}}</sub>
                 {% endif %}</p>
 
-        <td>{{item.gb}}
-            {% if item.gb != ' ' and item.gb != 'БЕЗЛИМИТНЫЙ ИНТЕРНЕТ' %}
-            ГБ
-            {% endif %}
+        <td>
+        {% if item.gb == -1 %}
+        БЕЗЛИМИТНЫЙ ИНТЕРНЕТ
+        {% elif item.gb != 0 %}
+        {{ item.gb }} ГБ
+        {% endif %}</p>
 
-            {% if item.gb_unlim != ' ' %}
-            <p><font size="-1"><i>+безлимитные</i></font></p>
-            {% endif %}
+
+        {% if item.gb_unlim != ' ' %}
+        <p><font size="-1"><i>+безлимитные</i></font></p>
+        {% endif %}
 
 
             <p><font size="-1">{{ item.gb_unlim }}</font></p></td>
