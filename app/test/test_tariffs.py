@@ -1,4 +1,4 @@
-from app.tariffs import TariffManager, Tariff, actual
+from app.tariffs import TariffManager, Tariff
 
 
 def test_actual():
