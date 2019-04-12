@@ -5,64 +5,72 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <title>Архивные тарифы Tele2 - список и информация, данные тарифы не доступны к подключению в Республике
         Татарстан</title>
 
 </head>
 <body>
-<div>
-    <h1 align="center"><b><i>Архивные тарифы</i></b></h1>
+<h1 align="center"><b><i>Архивные тарифы</i></b></h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <table class="table table-striped">
+
+
+                {% for item in archived %}
+                <tr>
+                    <td>{{item.name}}
+
+                        {% if item.hit == True %}
+                        <i style="color:red"><sup>Хит продаж</sup></i>
+                        {% endif %}
+
+                        <p>
+                            {% if item.price == 0 %}
+                            <font size="-1">без абонентской платы</font>
+                            {% elif item.price != 0 %}
+                            <font size="+3">{{ item.price }} ₽</font><sub>/{{item.price_period}}</sub>
+                            {% endif %}</p>
+
+                    <td>
+                        {% if item.gb == -1 %}
+                        БЕЗЛИМИТНЫЙ ИНТЕРНЕТ
+                        {% elif item.gb != 0 %}
+                        {{ item.gb }} ГБ
+                        {% endif %}</p>
+
+                        {% if item.gb_unlim != None %}
+                        <p><font size="-1"><i>+безлимитные</i></font></p>
+                        <p><font size="-1">{{ " ".join(item.gb_unlim) }}</font></p>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if item.minutes != 0 %}
+                        {{ item.minutes }} мин.
+                        {% endif %}
+
+                        {% if item.minutes_unlim_tele2 == True %}
+                        <p><i>+ безлимит на Tele2 России</i></p>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if item.sms != 0 %}
+                        {{ item.sms }} SMS
+                        {% endif %}
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </table>
+            <p align="center"><font size="+2"><a href="{{ url_for('index') }}"><i>Текущие тарифы</i></a></font></p>
+        </div>
+    </div>
 </div>
-<table rules="rows" align="center" cellspacing="10" cellpadding="10" width="40%">
-
-    {% for item in archived %}
-    <tr>
-        <td>{{item.name}}
-
-            {% if item.hit == True %}
-            <i style="color:red"><sup>Хит продаж</sup></i>
-            {% endif %}
-
-            <p>
-            {% if item.price == 0 %}
-            <font size="-1">без абонентской платы</font>
-            {% elif item.price != 0 %}
-            <font size="+3">{{ item.price }} ₽</font><sub>/{{item.price_period}}</sub>
-            {% endif %}</p>
-
-        <td>
-            {% if item.gb == -1 %}
-            БЕЗЛИМИТНЫЙ ИНТЕРНЕТ
-            {% elif item.gb != 0 %}
-            {{ item.gb }} ГБ
-            {% endif %}</p>
-
-            {% if item.gb_unlim != None %}
-            <p><font size="-1"><i>+безлимитные</i></font></p>
-            <p><font size="-1">{{ " ".join(item.gb_unlim) }}</font></p>
-            {% endif %}
-        </td>
-
-        <td>
-            {% if item.minutes != 0 %}
-            {{ item.minutes }} мин.
-            {% endif %}
-
-            {% if item.minutes_unlim_tele2 == True %}
-            <p><i>+ безлимит на Tele2 России</i></p>
-            {% endif %}
-        </td>
-
-        <td>
-            {% if item.sms != 0 %}
-            {{ item.sms }} SMS
-            {% endif %}
-        </td>
-
-    </tr>
-    {% endfor %}
-</table>
-<p align="center"><font size="+2"><a href="{{ url_for('index') }}"><i>Текущие тарифы</i></a></font></p>
-
 </body>
 </html>
