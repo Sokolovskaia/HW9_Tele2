@@ -2,16 +2,16 @@
 {% block title %}<title>Тарифы сотовой связи Tele2, самые выгодные тарифы Республики Татарстан для мобильного
     телефона</title>{% endblock %}
 
-{% block headline %}<h1 align="center"><b><i>Тарифы и опции</i></b></h1>{% endblock %}
+{% block headline %}<p class="h1 text-center font-weight-bold">Тарифы и опции</p>{% endblock %}
 
 {% block tariff_list %}
 {% for item in actual %}
-    {% with item=item %}
-        {% include "item.html" %}
-    {% endwith %}
+{% with item=item %}
+{% include "item.html" %}
+{% endwith %}
 {% endfor %}
 {% endblock %}
 
 
-{% block link %}<p align="center"><font size="+2"><a href="{{ url_for('archive') }}"><i>Архивные тарифы</i></a></font>
+{% block link %} <p class="h4 text-center font-italic"><a href="{{ url_for('archive') }}">Архивные тарифы</a>
 </p>{% endblock %}

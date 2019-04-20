@@ -1,18 +1,19 @@
 {% extends "base.html" %}
-{% block title %}<title>Архивные тарифы Tele2 - список и информация, данные тарифы не доступны к подключению в Республике
-        Татарстан</title>{% endblock %}
+{% block title %}<title>Архивные тарифы Tele2 - список и информация, данные тарифы не доступны к подключению в
+    Республике
+    Татарстан</title>{% endblock %}
 
-{% block headline %}<h1 align="center"><b><i>Архивные тарифы</i></b></h1>{% endblock %}
+{% block headline %}<p class="h1 text-center font-weight-bold">Архивные тарифы</p>{% endblock %}
 
 {% block tariff_list %}
 {% for item in archived %}
-    {% with item=item %}
-        {% include "item.html" %}
-    {% endwith %}
+{% with item=item %}
+{% include "item.html" %}
+{% endwith %}
 {% endfor %}
 {% endblock %}
 
-{% block link %}<p align="center"><font size="+2"><a href="{{ url_for('index') }}"><i>Текущие тарифы</i></a></font></p>
+{% block link %}<p class="h4 text-center font-italic"><a href="{{ url_for('index') }}">Текущие тарифы</a>
 </p>{% endblock %}
 
 
